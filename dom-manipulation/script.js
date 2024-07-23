@@ -20,7 +20,7 @@ let newQuoteText = document.getElementById("newQuoteText"),
 
 function showRandomQuote() {
   let randomNumber = Math.floor(quotes.length * Math.random());
-  quoteDisplay.textContent = quotes[randomNumber].text;
+  quoteDisplay.innerHTML = quotes[randomNumber].text;
 }
 showRandomQuote();
 
