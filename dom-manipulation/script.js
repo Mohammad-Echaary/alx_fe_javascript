@@ -68,10 +68,7 @@ function importFromJsonFile(event) {
   };
   fileReader.readAsText(event.target.files[0]);
 }
-let fileInput = document.createElement("input");
-fileInput.type = "file";
-fileInput.id = "importFile";
-fileInput.accept = ".json";
+let fileInput = document.getElementById("file");
 fileInput.addEventListener("change", () => importFromJsonFile(event));
 
 let exportBtn = document.getElementById("export-quotes");
