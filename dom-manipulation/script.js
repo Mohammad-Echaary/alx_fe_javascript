@@ -74,9 +74,8 @@ fileInput.id = "importFile";
 fileInput.accept = ".json";
 fileInput.addEventListener("change", () => importFromJsonFile(event));
 
-let exportBtn = document.createElement("button");
+let exportBtn = document.getElementById("export-quotes");
 exportBtn.textContent = "Export Quotes to JSON";
-document.body.appendChild(exportBtn);
 exportBtn.addEventListener("click", () => exportQuotes());
 
 function exportQuotes() {
