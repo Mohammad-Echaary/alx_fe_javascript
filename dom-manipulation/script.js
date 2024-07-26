@@ -121,7 +121,7 @@ window.onload = async function () {
 };
 async function fetchQuotesFromServer() {
   try {
-    const response = await fetch("https://api.exa.com/quotes"); // Replace with your actual API endpoint
+    const response = await fetch("https://jsonplaceholder.typicode.com/posts"); // Replace with your actual API endpoint
     const data = await response.json();
     return data;
   } catch (error) {
