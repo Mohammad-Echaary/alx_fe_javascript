@@ -111,20 +111,21 @@ function filterQuotes() {
   });
 }
 
-// Function to fetch quotes from the server
+// Fetch quotes from server on page load
+window.onload = async function () {
+  const serverQuotes = await fetchQuotesFromServer();
+  quotes = quotes.concat(serverQuotes);
+  localStorage.setItem("quotes", JSON.stringify(quotes));
+  populateCategories();
+  showRandomQuote();
+};
 async function fetchQuotesFromServer() {
   try {
-    const response = await fetch("https://api.example.com/quotes"); // Replace with your actual API endpoint
-    const quotes = await response.json();
-    return quotes;
+    const response = await fetch("https://api.exa.com/quotes"); // Replace with your actual API endpoint
+    const data = await response.json();
+    return data;
   } catch (error) {
     console.error("Error fetching quotes:", error);
     return [];
   }
 }
-// Fetch quotes and populate categories on page load
-window.onload = async function () {
-  const quotes = await fetchQuotesFromServer();
-  const categories = extractCategories(quotes);
-  populateCategories(categories);
-};
