@@ -88,13 +88,16 @@ function exportQuotes() {
 }
 
 let categoryFilter = document.getElementById("categoryFilter");
-quotes.forEach((quote) => {
-  let option = document.createElement("option");
-  option.setAttribute("value", quote.category);
-  option.textContent = quote.category;
-  categoryFilter.appendChild(option);
-});
 
+function populateCategories() {
+  quotes.map((quote) => {
+    let option = document.createElement("option");
+    option.setAttribute("value", quote.category);
+    option.textContent = quote.category;
+    categoryFilter.appendChild(option);
+  });
+}
+populateCategories();
 categoryFilter.value =
   localStorage.getItem("selectedOption") || "All Categories";
 function filterQuotes() {
