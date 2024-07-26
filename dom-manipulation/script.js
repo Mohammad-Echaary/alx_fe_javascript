@@ -120,22 +120,26 @@ window.onload = async function () {
   showRandomQuote();
 };
 async function fetchQuotesFromServer() {
-  fetch("https://jsonplaceholder.typicode.com/posts", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      title: "foo",
-      body: "bar",
-      userId: 1,
-    }),
-  })
-    .then((response) => response.json())
-    .then((data) => console.log(data))
-    .catch((error) => console.error("Error:", error));
+  try {
+    let localQuotes = JSON.parse(localStorage.getItem("quotes")) || [];
+
+    const response = await fetch("https://api.example.com/sync-quotes", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(localQuotes),
+    });
+
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+
+    const serverResponse = await response.json();
+    console.log("Quotes synced with server!");
+  } catch (error) {
+    console.error("Error synchronizing quotes:", error);
+  }
 }
-async function syncQuotes() {
-  // Implementation of syncQuotes
-}
+async function syncQuotes() {}
 setInterval(syncQuotes, 300000);
