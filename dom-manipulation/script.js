@@ -110,3 +110,21 @@ function filterQuotes() {
     }
   });
 }
+
+// Function to fetch quotes from the server
+async function fetchQuotesFromServer() {
+  try {
+    const response = await fetch("https://api.example.com/quotes"); // Replace with your actual API endpoint
+    const quotes = await response.json();
+    return quotes;
+  } catch (error) {
+    console.error("Error fetching quotes:", error);
+    return [];
+  }
+}
+// Fetch quotes and populate categories on page load
+window.onload = async function () {
+  const quotes = await fetchQuotesFromServer();
+  const categories = extractCategories(quotes);
+  populateCategories(categories);
+};
