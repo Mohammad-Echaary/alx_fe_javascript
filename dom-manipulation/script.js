@@ -123,7 +123,7 @@ async function fetchQuotesFromServer() {
   try {
     let localQuotes = JSON.parse(localStorage.getItem("quotes")) || [];
 
-    const response = await fetch("https://api.example.com/sync-quotes", {
+    const response = await fetch("https://jsonplaceholder.typicode.com/posts", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
