@@ -24,7 +24,8 @@ function showRandomQuote() {
 }
 showRandomQuote();
 
-function addQuote() {
+function createAddQuoteForm(event) {
+  event.preventDefault();
   let text = newQuoteText.value.trim(),
     category = newQuoteCategory.value.trim();
   if (text !== "" && category !== "") {
