@@ -120,12 +120,18 @@ window.onload = async function () {
   showRandomQuote();
 };
 async function fetchQuotesFromServer() {
-  try {
-    const response = await fetch("https://jsonplaceholder.typicode.com/posts"); // Replace with your actual API endpoint
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error("Error fetching quotes:", error);
-    return [];
-  }
+  fetch("https://jsonplaceholder.typicode.com/posts", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      title: "foo",
+      body: "bar",
+      userId: 1,
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => console.log(data))
+    .catch((error) => console.error("Error:", error));
 }
