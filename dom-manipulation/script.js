@@ -86,3 +86,27 @@ function exportQuotes() {
   a.click();
   document.body.removeChild(a);
 }
+
+let categoryFilter = document.getElementById("categoryFilter");
+quotes.forEach((quote) => {
+  let option = document.createElement("option");
+  option.setAttribute("value", quote.category);
+  option.textContent = quote.category;
+  categoryFilter.appendChild(option);
+});
+
+categoryFilter.value =
+  localStorage.getItem("selectedOption") || "All Categories";
+function filterQuotes() {
+  let selectedOption = categoryFilter.value;
+  localStorage.setItem("selectedOption", categoryFilter.value);
+  quoteDisplay.innerHTML = "";
+  quotes.forEach((quote) => {
+    if (quote.category == selectedOption) {
+      quoteDisplay.innerHTML += `${quote.text} <br/>`;
+    }
+    // if (selectedOption == "All Categories") {
+    //   quoteDisplay.innerHTML = quotes.forEach((quote) => `${quote.text}<br/>`);
+    // }
+  });
+}
