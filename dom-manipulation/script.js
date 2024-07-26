@@ -99,17 +99,14 @@ function populateCategories() {
 }
 populateCategories();
 categoryFilter.value =
-  localStorage.getItem("selectedOption") || "All Categories";
+  localStorage.getItem("selectedCategory") || "All Categories";
 function filterQuotes() {
-  let selectedOption = categoryFilter.value;
-  localStorage.setItem("selectedOption", categoryFilter.value);
+  let selectedCategory = categoryFilter.value;
+  localStorage.setItem("selectedCategory", selectedCategory);
   quoteDisplay.innerHTML = "";
   quotes.forEach((quote) => {
-    if (quote.category == selectedOption) {
+    if (quote.category == selectedCategory) {
       quoteDisplay.innerHTML += `${quote.text} <br/>`;
     }
-    // if (selectedOption == "All Categories") {
-    //   quoteDisplay.innerHTML = quotes.forEach((quote) => `${quote.text}<br/>`);
-    // }
   });
 }
