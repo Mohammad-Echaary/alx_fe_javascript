@@ -138,3 +138,4 @@ async function fetchQuotesFromServer() {
 async function syncQuotes() {
   // Implementation of syncQuotes
 }
+setInterval(syncQuotes, 300000);
